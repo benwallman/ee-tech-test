@@ -3,18 +3,7 @@
  */
 
 import { render } from "@testing-library/react";
-
-const GroceryTile = ({
-  name,
-  inBasket,
-}) => (
-  <div>
-    <h2>{name}</h2>
-    <button>
-      {inBasket ? "Remove from basket" : "Add to basket"}
-    </button>
-  </div>
-)
+import GroceryTile from './GroceryTile';
 
 describe("Grocery Tile", () => {
   it("Should display an add basket button if none are in basket", () => {

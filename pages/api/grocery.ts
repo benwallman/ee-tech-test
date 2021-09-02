@@ -18,6 +18,6 @@ export const get = async (_req: NextApiRequest, res: NextApiResponse) => {
 
 export const post = async (req: NextApiRequest, res: NextApiResponse) => {
   const groceryItem = req.body;
-  await fakeDbPost({...groceryItem});
+  await fakeDbPost(groceryItem);
   res.status(200);
 };

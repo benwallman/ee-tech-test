@@ -22,3 +22,9 @@ npm run build
 ```
 
 And then follow the steps from [create-next-app's documentation](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) to handle deployment.
+
+
+### Version number
+
+
+This test is built for Equal Expert's coding test [5b8d0fd276b6d288905ed2f63a934e057e8feca2](https://equalexperts.github.io/ee-tech-interviews-uk/grocery-list-problem.html)

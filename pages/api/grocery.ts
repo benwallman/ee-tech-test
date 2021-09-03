@@ -2,12 +2,25 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { promisify } from "util";
 const sleep = promisify(setTimeout);
 
-const groceriesDataStore = [];
+const baseItems = [{
+  name: "Apple",
+  id: "001"
+}, {
+  name: "Orange",
+  id: "002"
+}, {
+  name: "Banana",
+  id: "003"
+}].map(item => ({
+  ...item,
+  inBasket: false,
+}))
 
-const fakeDbPost = async (groceryItem) => {
+let groceriesDataStore = [...baseItems];
+
+const fakeDbPost = async (groceryItems) => {
   await sleep(500);
-  groceriesDataStore.push(groceryItem);
-  return groceriesDataStore;
+  groceriesDataStore = groceryItems;
 };
 
 const fakeDbGet = async () => sleep(200).then(() => groceriesDataStore);
@@ -17,7 +30,19 @@ export const get = async (_req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export const post = async (req: NextApiRequest, res: NextApiResponse) => {
-  const groceryItem = req.body;
-  await fakeDbPost(groceryItem);
-  res.status(200);
+  const groceryItems = req.body;
+  await fakeDbPost(groceryItems);
+  res.send(200);
 };
+
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === "POST") {
+    await post(req, res);
+  } else if (req.method === "GET") {
+    await get(req, res);
+  } else {
+    res.status(501);
+  }
+}
+
+export default handler

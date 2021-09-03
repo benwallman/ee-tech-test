@@ -11,7 +11,8 @@ it("Get grocery list", async () => {
     }),
   } as unknown as NextApiResponse;
   await groceryMethods.get(request, response);
-  expect(spy).toBeCalledWith([]);
+  const itemsReturned = spy.mock.calls[0][0];
+  expect(Array.isArray(itemsReturned)).toBe(true);
 });
 
 describe("Creating a shopping list", () => {
@@ -19,13 +20,14 @@ describe("Creating a shopping list", () => {
     const id = uuidv4();
     const postSpy = jest.fn()
     const postRequest = {
-      body: {
+      body: [{
         id,
-        status: "foo",
-      }
+        inBasket: "foo",
+        name: id
+      }]
     } as NextApiRequest;
     const postResponse = {
-      status: postSpy,
+      send: postSpy,
     } as unknown as NextApiResponse;
     await groceryMethods.post(postRequest, postResponse);
 

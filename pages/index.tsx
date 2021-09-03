@@ -44,20 +44,22 @@ export default function Home() {
         <h1>
           Welcome to <a href="https://nextjs.org">EE shopping!</a>
         </h1>
-        {groceries.map(({
-          name,
-          id,
-          inBasket,
-        }) => (
-          <GroceryTile
-            key={id}
-            name={name}
-            inBasket={inBasket}
-            onClick={() => {
-              updateGroceries(id, !inBasket)
-            }}
-          />
-        ))}
+        <section style={{ display: "flex" }}>
+          {groceries.map(({
+            name,
+            id,
+            inBasket,
+          }) => (
+            <GroceryTile
+              key={id}
+              name={name}
+              inBasket={inBasket}
+              onClick={() => {
+                updateGroceries(id, !inBasket)
+              }}
+            />
+          ))}
+        </section>
       </main>
     </div>
   )

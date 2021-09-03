@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { promisify } from "util";
 const sleep = promisify(setTimeout);
+import { Grocery } from "../index"
 
-const baseItems = [{
+const baseItems: Grocery[] = [{
   name: "Apple",
   id: "001"
 }, {
@@ -30,7 +31,7 @@ export const get = async (_req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export const post = async (req: NextApiRequest, res: NextApiResponse) => {
-  const groceryItems = req.body;
+  const groceryItems = req.body as Grocery[];
   await fakeDbPost(groceryItems);
   res.send(200);
 };

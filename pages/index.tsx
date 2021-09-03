@@ -1,6 +1,4 @@
 import React from "react"
-import Head from "next/head"
-import styles from "../styles/Home.module.css"
 import GroceryTile from "../components/GroceryTile"
 
 export interface Grocery {
@@ -16,7 +14,6 @@ export default function Home() {
       .then(res => res.json())
       .then((res) => {
         const newGroceries = res as Grocery[];
-        console.log("Result is", res);
         setGroceries(newGroceries);
       })
   }
@@ -36,13 +33,9 @@ export default function Home() {
   }
   return (
     <div >
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main>
         <h1>
-          Welcome to <a href="https://nextjs.org">EE shopping!</a>
+          Welcome to EqualExperts shopping!
         </h1>
         <section style={{ display: "flex" }}>
           {groceries.map(({

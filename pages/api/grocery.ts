@@ -15,6 +15,7 @@ const baseItems: Grocery[] = [{
 }].map(item => ({
   ...item,
   inBasket: false,
+  quantity: 0,
 }))
 
 let groceriesDataStore = [...baseItems];
